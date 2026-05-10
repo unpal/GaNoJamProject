@@ -9,35 +9,53 @@ public class Fruits_Sort : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created\\
 
     float distance = 10;
+    bool isDrag = false;
     public List<GameObject> PackingObject = new List<GameObject>();
+    public List<Vector3> PackingObjectOffSet = new List<Vector3>();
     void Start()
     {
-        
+        isDrag = false; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    void OnMouseDrag()
-    {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Vector3 mousePosition = new Vector3(mousePos.x, mousePos.y, distance);
-        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        transform.position = objPosition;
-        if (PackingObject != null)
+        if(isDrag)
         {
-            for(int i = 0; i < PackingObject.Count; i++)
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Vector3 mousePosition = new Vector3(mousePos.x, mousePos.y, distance);
+            Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            transform.position = objPosition;
+            if (PackingObject != null)
             {
-                Vector3 PackingObjectPosition = new Vector3(objPosition.x - PackingObject[i].transform.position.x, objPosition.y - PackingObject[i].transform.position.y, objPosition.z);
-                PackingObject[i].transform.position = PackingObjectPosition;
+                for (int i = 0; i < PackingObject.Count; i++)
+                {
+                    if (PackingObject[i] != null)
+                    {
+                        Vector3 PackingObjectPosition = new Vector3(objPosition.x + PackingObjectOffSet[i].x, objPosition.y + PackingObjectOffSet[i].y, objPosition.z);
+
+                        PackingObject[i].transform.position = PackingObjectPosition;
+                    }
+                }
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnMouseDrag()
     {
-        Debug.Log("트리거 충돌");
+
+    }
+    private void OnMouseUp()
+    {
+        isDrag = false;
+
+    }
+
+    private void OnMouseDown()
+    {
+        isDrag = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision == null) return;
 
         if (collision.CompareTag("Fruits"))
@@ -45,11 +63,18 @@ public class Fruits_Sort : MonoBehaviour
             MoveFruits move = collision.gameObject.GetComponent<MoveFruits>();
             if (move != null)
             {
-                if (move.isDrag == false && move.isPacking == false)
-                {
-                    move.isPacking = true;
-                    PackingObject.Add(move.gameObject);
-                }
+                move.isPacking = true;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Fruits"))
+        {
+            MoveFruits move = collision.gameObject.GetComponent<MoveFruits>();
+            if (move != null)
+            {
+                move.isPacking = false;
             }
         }
     }

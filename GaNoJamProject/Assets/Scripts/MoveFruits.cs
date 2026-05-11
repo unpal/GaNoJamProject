@@ -37,16 +37,19 @@ public class MoveFruits : MonoBehaviour
         }
         if(Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            isDrag = false;
             if (!isPacking)
                 Destroy(gameObject);
             else
             {
                 if(Basket != null)
                 {
-                    Fruits_Sort tempfruits = Basket.GetComponent<Fruits_Sort>();
-                    tempfruits.PackingObject.Add(gameObject);
-                    tempfruits.PackingObjectOffSet.Add(gameObject.transform.position);
+                    if (isDrag)
+                    {
+                        Fruits_Sort tempfruits = Basket.GetComponent<Fruits_Sort>();
+                        tempfruits.PackingObject.Add(gameObject);
+                        tempfruits.PackingObjectOffSet.Add(gameObject.transform.position - Basket.transform.position);
+                        isDrag = false;
+                    }
                 }
             }
         }

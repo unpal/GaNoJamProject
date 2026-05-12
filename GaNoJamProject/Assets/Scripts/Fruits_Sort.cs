@@ -10,17 +10,28 @@ public class Fruits_Sort : MonoBehaviour
 
     float distance = 10;
     bool isDrag = false;
+    private GameObject MainCamera;
+    private CameraMove MoveCame;
     public List<GameObject> PackingObject = new List<GameObject>();
     public List<Vector3> PackingObjectOffSet = new List<Vector3>();
+    public float UpBaskDistan;
+    public float DownBaskDistan;
+    public float MoveBaskTime;
+    public GameObject MovePivotDown;
+    public GameObject MovePivotUp;
+    public GameObject MovePivot;
+    
     void Start()
     {
-        isDrag = false; 
+        isDrag = false;
+        MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        MoveCame = MainCamera.GetComponent<CameraMove>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isDrag)
+        if(isDrag && MoveCame.ImageType == 2)
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
             Vector3 mousePosition = new Vector3(mousePos.x, mousePos.y, distance);
@@ -39,10 +50,41 @@ public class Fruits_Sort : MonoBehaviour
                 }
             }
         }
-    }
-    void OnMouseDrag()
-    {
+        else
+        {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Vector3 mousePosition = new Vector3(mousePos.x, mousePos.y, distance);
+            Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            float Distan = Vector3.Distance(objPosition, MovePivotDown.transform.position);
+            Vector3 tempPosition;
+            Vector3 Velocity = Vector3.zero;
+            if (Distan < UpBaskDistan)
+            {
+                tempPosition = new Vector3(MovePivotUp.transform.position.x, MovePivotUp.transform.position.y, MovePivotUp.transform.position.z);
+            }
+            else if(Distan > DownBaskDistan)
+            {
+                tempPosition = new Vector3(MovePivotDown.transform.position.x, MovePivotDown.transform.position.y, MovePivotDown.transform.position.z);
+            }
+            else
+            {
+                tempPosition = transform.position;
+            }
+            transform.position = Vector3.SmoothDamp(transform.position, tempPosition, ref Velocity, MoveBaskTime);
 
+            if (PackingObject != null)
+            {
+                for (int i = 0; i < PackingObject.Count; i++)
+                {
+                    if (PackingObject[i] != null)
+                    {
+                        Vector3 PackingObjectPosition = new Vector3(transform.position.x + PackingObjectOffSet[i].x, transform.position.y + PackingObjectOffSet[i].y, transform.position.z);
+
+                        PackingObject[i].transform.position = PackingObjectPosition;
+                     }
+                }
+            }
+        }
     }
     private void OnMouseUp()
     {

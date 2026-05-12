@@ -54,15 +54,15 @@ public class MoveFruits : MonoBehaviour
             }
         }
     }
-    void OnMouseDrag()
-    {
+    //void OnMouseDrag()
+    //{
 
-    }
+    //}
 
-    private void OnMouseDown()
-    {
-    }
-    private void OnMouseUp()
-    {
-    }
+    //private void OnMouseDown()
+    //{
+    //}
+    //private void OnMouseUp()
+    //{
+    //}
 }

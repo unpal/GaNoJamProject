@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 67291efcfaf2b0843b0946d3cf384712
+guid: 33a37eaeba3ddb742ab2c7e5544294cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7582185291212298679
-    second: "\uBC14\uAD6C\uB2C8_0"
+      213: -550136923198748407
+    second: StrawberryImage_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uBC14\uAD6C\uB2C8_0"
+      name: StrawberryImage_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 946691856aaa6c690800000000000000
-      internalID: -7582185291212298679
+      spriteID: 90989e212658d58f0800000000000000
+      internalID: -550136923198748407
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uBC14\uAD6C\uB2C8_0": -7582185291212298679
+      StrawberryImage_0: -550136923198748407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

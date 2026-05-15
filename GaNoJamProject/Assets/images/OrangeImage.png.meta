@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9dffbc7f17ceb1746865713014ac8956
+guid: b517f2e26d4dca24eae1c606ab28c8d2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7251119792329589286
-    second: PeachImage_0
+      213: 4731876514259493027
+    second: Orange Image_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PeachImage_0
+      name: Orange Image_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1000
-        height: 1000
+        x: 10
+        y: 33
+        width: 953
+        height: 898
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6220c95780721a460800000000000000
-      internalID: 7251119792329589286
+      spriteID: 3a063718e900ba140800000000000000
+      internalID: 4731876514259493027
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PeachImage_0: 7251119792329589286
+      Orange Image_0: 4731876514259493027
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

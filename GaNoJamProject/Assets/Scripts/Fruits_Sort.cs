@@ -31,7 +31,7 @@ public class Fruits_Sort : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDrag && MoveCame.ImageType == 2)
+        if(isDrag)
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
             Vector3 mousePosition = new Vector3(mousePos.x, mousePos.y, distance);
@@ -88,13 +88,15 @@ public class Fruits_Sort : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        isDrag = false;
+        if(MoveCame.ImageType == 2)
+            isDrag = false;
 
     }
 
     private void OnMouseDown()
     {
-        isDrag = true;
+        if (MoveCame.ImageType == 2)
+            isDrag = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

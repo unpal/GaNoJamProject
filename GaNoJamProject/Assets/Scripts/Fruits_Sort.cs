@@ -63,6 +63,8 @@ public class Fruits_Sort : MonoBehaviour
         {
             Vector3 Velocity = Vector3.zero;
             transform.position = Vector3.SmoothDamp(transform.position, SelectMovePivot.transform.position, ref Velocity, MoveBaskTime * 3);
+            Vector3 TempScale = new Vector3(0.8f, 0.8f, 1.0f);
+            transform.localScale = TempScale;
         }
         else
         {

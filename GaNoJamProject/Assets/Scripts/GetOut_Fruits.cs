@@ -7,8 +7,10 @@ public class GetOut_Fruits : MonoBehaviour
 
     public GameObject Fruit;
     MoveFruits movefruits;
+    public GameManager gamemanager;
     void Start()
     {
+        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -20,12 +22,15 @@ public class GetOut_Fruits : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject game = Instantiate(Fruit);
-        game.transform.position = transform.position;
-        MoveFruits Move = game.gameObject.GetComponent<MoveFruits>();
-        if(Move != null)
+        if (gamemanager.GameSequence == 4)
         {
-            Move.isDrag = true;
+            GameObject game = Instantiate(Fruit);
+            game.transform.position = transform.position;
+            MoveFruits Move = game.gameObject.GetComponent<MoveFruits>();
+            if (Move != null)
+            {
+                Move.isDrag = true;
+            }
         }
     }
 

@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4524903091019151950, guid: 802422c222d3bc341803e9d3fe61b493, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e6717644f3e2b24ca7826a807b50678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fruits_Sort
+  isDrag: 0
   PackingObject: []
   PackingObjectOffSet: []
   UpBaskDistan: 3
@@ -113,7 +114,10 @@ MonoBehaviour:
   MoveBaskTime: 0.005
   MovePivotDown: {fileID: 0}
   MovePivotUp: {fileID: 0}
+  SelectMovePivot: {fileID: 0}
   MovePivot: {fileID: 0}
+  DeliveryPivot: {fileID: 0}
+  BasketNum: 0
 --- !u!50 &2986963614991087567
 Rigidbody2D:
   serializedVersion: 5

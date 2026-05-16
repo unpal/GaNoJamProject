@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine.U2D;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Fruits_Sort : MonoBehaviour
@@ -9,9 +10,9 @@ public class Fruits_Sort : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created\\
 
     float distance = 10;
-    bool isDrag = false;
+    public bool isDrag = false;
     private GameObject MainCamera;
-    private CameraMove MoveCame;
+    private GameManager gamemanager;
     public List<GameObject> PackingObject = new List<GameObject>();
     public List<Vector3> PackingObjectOffSet = new List<Vector3>();
     public float UpBaskDistan;
@@ -19,13 +20,16 @@ public class Fruits_Sort : MonoBehaviour
     public float MoveBaskTime;
     public GameObject MovePivotDown;
     public GameObject MovePivotUp;
+    public GameObject SelectMovePivot;
     public GameObject MovePivot;
-    
+    public GameObject DeliveryPivot;
+    public int BasketNum;
     void Start()
     {
         isDrag = false;
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        MoveCame = MainCamera.GetComponent<CameraMove>();
+        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        BasketNum = 0;
     }
 
     // Update is called once per frame
@@ -50,6 +54,16 @@ public class Fruits_Sort : MonoBehaviour
                 }
             }
         }
+        else if (gamemanager.GameSequence == 6)
+        {
+            Vector3 Velocity = Vector3.zero;
+            transform.position = Vector3.SmoothDamp(transform.position, DeliveryPivot.transform.position, ref Velocity, MoveBaskTime * 3);
+        }
+        else if (gamemanager.GameSequence == 5)
+        {
+            Vector3 Velocity = Vector3.zero;
+            transform.position = Vector3.SmoothDamp(transform.position, SelectMovePivot.transform.position, ref Velocity, MoveBaskTime * 3);
+        }
         else
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
@@ -62,7 +76,7 @@ public class Fruits_Sort : MonoBehaviour
             {
                 tempPosition = new Vector3(MovePivotUp.transform.position.x, MovePivotUp.transform.position.y, MovePivotUp.transform.position.z);
             }
-            else if(Distan > DownBaskDistan)
+            else if (Distan > DownBaskDistan)
             {
                 tempPosition = new Vector3(MovePivotDown.transform.position.x, MovePivotDown.transform.position.y, MovePivotDown.transform.position.z);
             }
@@ -81,21 +95,22 @@ public class Fruits_Sort : MonoBehaviour
                         Vector3 PackingObjectPosition = new Vector3(transform.position.x + PackingObjectOffSet[i].x, transform.position.y + PackingObjectOffSet[i].y, transform.position.z);
 
                         PackingObject[i].transform.position = PackingObjectPosition;
-                     }
+                    }
                 }
             }
         }
+
     }
     private void OnMouseUp()
     {
-        if(MoveCame.ImageType == 2)
+        if(gamemanager.GameSequence == 6)
             isDrag = false;
 
     }
 
     private void OnMouseDown()
     {
-        if (MoveCame.ImageType == 2)
+        if (gamemanager.GameSequence == 6)
             isDrag = true;
     }
     private void OnTriggerEnter2D(Collider2D collision)

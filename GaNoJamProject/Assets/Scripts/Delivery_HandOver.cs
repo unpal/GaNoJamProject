@@ -275,7 +275,7 @@ public class Delivery_HandOver : MonoBehaviour
                         break;
                     case 1:
                         {
-                            YellowNum = BananaNum + KoreanMelonNum + MangoNum + LemonNum;
+                            YellowNum = BananaNum + KoreanMelonNum + MangoNum + LemonNum + PersimmonNum + OrangeNum;
                             AllFruitsNum = AppleNum + BananaNum + BlueberryNum + GrapeNum + KoreanMelonNum + LemonNum
                                 + MangoNum + OrangeNum + PeachNum + PersimmonNum + StrawberryNum + TomatoNum + PomegranateNum;
                             gameManager.StarValue = 4;

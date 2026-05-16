@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -235,10 +236,12 @@ public class GameManager : MonoBehaviour
                 break;
         }
         ResultPriceText.text = "판매 가격 : " + Price.ToString() + "￦";
+        UnityEngine.Color tempColor = new UnityEngine.Color(255, 199, 0);
+        ColorUtility.TryParseHtmlString("#FFC700", out tempColor);
         if (StarValue == 4)
-            ResultPriceText.color = Color.yellow;
+            ResultPriceText.color = tempColor;
         else
-            ResultPriceText.color = Color.red;
+            ResultPriceText.color = UnityEngine.Color.red;
     }
     public void OnClickPhoneCheckBackButton()
     {

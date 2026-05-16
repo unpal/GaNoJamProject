@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 
@@ -24,6 +26,10 @@ public class GameManager : MonoBehaviour
     public Sprite[] starSprites;
     public GameObject StarIamge;
     public TextMeshProUGUI ResultText;
+    public TextMeshProUGUI ResultPriceText;
+    public CashDesk cashdesk;
+    public Sprite CashDeskSprite;
+    public int Price;
     void Start()
     {
         MoveCame = GameObject.Find("Main Camera").GetComponent<CameraMove>();
@@ -37,13 +43,15 @@ public class GameManager : MonoBehaviour
     }
     public void OnClickNextImage()
     {
-        GameSequence++; 
-        switch(GameSequence)
+        GameSequence++;
+        switch (GameSequence)
         {
             case 1:
                 {
                     MoveCame.ImageType = 1;
                     MainWindowCanvas.SetActive(false);
+                    StartCoroutine(NewOrder());
+
                 }
                 break;
             case 3:
@@ -75,7 +83,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
-        
+
     }
     public void OnClickSelectBasket(int index)
     {
@@ -116,16 +124,16 @@ public class GameManager : MonoBehaviour
     public void OnClickPhoneCheckButton()
     {
         SmartPhoneButton.GetComponent<Image>().sprite = SmartPhonesprites;
-        if (StarValue > 0  && StarValue < 5)
+        if (StarValue > 0 && StarValue < 5)
             StarIamge.GetComponent<Image>().sprite = starSprites[StarValue];
         else
             StarIamge.GetComponent<Image>().sprite = starSprites[0];
         ResultCanvas.SetActive(true);
-        switch(RecelptNum)
+        switch (RecelptNum)
         {
             case 0:
                 {
-                    switch(StarValue)
+                    switch (StarValue)
                     {
                         case 0:
                             {
@@ -225,10 +233,25 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 break;
-        }    
+        }
+        ResultPriceText.text = "판매 가격 : " + Price.ToString() + "￦";
+        if (StarValue == 4)
+            ResultPriceText.color = Color.yellow;
+        else
+            ResultPriceText.color = Color.red;
     }
     public void OnClickPhoneCheckBackButton()
     {
         ResultCanvas.SetActive(false);
+    }
+    IEnumerator NewOrder()
+    {
+        yield return new WaitForSeconds(3);
+        cashdesk.isNewOrder = true;
+        cashdesk.GetComponent<SpriteRenderer>().sprite = CashDeskSprite;
+    }
+    public void OnClickReStartButton()
+    {
+        SceneManager.LoadScene("GameScene");
     }
 }

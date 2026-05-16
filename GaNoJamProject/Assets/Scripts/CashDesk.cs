@@ -9,6 +9,7 @@ public class CashDesk : MonoBehaviour
     public TextMeshProUGUI RecelptText;
     public TextMeshProUGUI RecelptCheckText;
     bool isClick;
+    public bool isNewOrder;
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -22,7 +23,7 @@ public class CashDesk : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!isClick)
+        if (!isClick && isNewOrder)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
             gameManager.GameSequence++;

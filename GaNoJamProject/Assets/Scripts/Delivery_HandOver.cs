@@ -308,6 +308,38 @@ public class Delivery_HandOver : MonoBehaviour
                     default:
                         break;
                 }
+                gameManager.Price = AppleNum * 1000 + BananaNum * 1000 + BlueberryNum * 500 + GrapeNum * 1000 + KoreanMelonNum * 1500 + LemonNum * 1000 +
+                    MangoNum * 2500 + OrangeNum * 1500 + PeachNum * 1500 + PersimmonNum * 700 + StrawberryNum * 700 + TomatoNum * 700 + PomegranateNum * 2500;
+                switch(gameManager.StarValue)
+                {
+                    case 0:
+                        {
+                            gameManager.Price = (int)(gameManager.Price * 0.2f);
+                        }
+                        break;
+                    case 1:
+                        {
+                            gameManager.Price = (int)(gameManager.Price * 0.4f);
+                        }
+                        break;
+                    case 2:
+                        {
+                            gameManager.Price = (int)(gameManager.Price * 0.6f);
+                        }
+                        break;
+                    case 3:
+                        {
+                            gameManager.Price = (int)(gameManager.Price * 0.8f);
+                        }
+                        break;
+                    case 4:
+                        {
+                            gameManager.Price = (int)(gameManager.Price * 1.1f);
+                        }
+                        break;
+                    default:
+                        break;
+                }
                 Basket.gameObject.SetActive(false);
                 isDisapear = true;
             }
